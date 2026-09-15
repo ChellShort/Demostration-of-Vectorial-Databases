@@ -4,6 +4,10 @@ from app.nodes.final import should_continue
 from app.nodes.llm_call import llm_call
 from app.nodes.tool_node import tool_node
 from langgraph.graph import StateGraph, START, END
+from langgraph.checkpoint.memory import InMemorySaver  
+from langgraph.graph import StateGraph
+
+checkpointer = InMemorySaver()
 
 # Build workflow
 agent_builder = StateGraph(MessagesState)
@@ -22,4 +26,4 @@ agent_builder.add_conditional_edges(
 agent_builder.add_edge("tool_node", "llm_call")
 
 # Compile the agent
-agent = agent_builder.compile()
+agent = agent_builder.compile(checkpointer)

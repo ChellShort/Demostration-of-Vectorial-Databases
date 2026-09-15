@@ -39,7 +39,7 @@ for i, (document, embedding) in enumerate(zip(chunks, embeddings)):
             vector=embedding.tolist(),
             payload={
                 "text": document,
-                "source": "example.txt"
+                "source": "REGLAMENTO INTERIOR DE TRABAJO 0426 2.pdf"
             }
         )
     )
